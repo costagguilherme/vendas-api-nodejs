@@ -1,5 +1,6 @@
 import {UsersRepository} from '../typeorm/repositories/UsersRepository'
 import {getCustomRepository} from 'typeorm'
+import {hash} from 'bcryptjs'
 
 
 interface IRequest {
@@ -14,7 +15,8 @@ class CreateUserService {
 		const usersRepository = getCustomRepository(UsersRepository)
 		const emailExists = await usersRepository.findByEmail(email)
 		if (emailExists) throw new Error('Email already being used')
-		const user = usersRepository.create({name: name, email: email, password: password})
+		const passwordHash = await hash(password, 8)
+		const user = usersRepository.create({name: name, email: email, password: passwordHash})
 		await usersRepository.save(user)
 		return user
 	}
