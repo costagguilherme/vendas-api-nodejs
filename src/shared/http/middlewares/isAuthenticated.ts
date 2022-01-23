@@ -9,7 +9,6 @@ interface ITokenPayload {
 
 }
 function isAuthenticated (req: Request, res: Response, next: NextFunction) {
-
 	const auth = req.headers['authorization']
 	if (!auth) return res.status(401).send('Token do not exists')
 	const token = (auth.split(" "))[1]
