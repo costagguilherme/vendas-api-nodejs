@@ -4,8 +4,10 @@ const passwordRouter = Router()
 
 
 import {ForgotPasswordController} from '../../../../modules/users/controllers/ForgotPasswordController'
+import {ResetPasswordController} from '../../../../modules/users/controllers/ResetPasswordController'
 
 const forgotPasswordController = new ForgotPasswordController()
+const resetPasswordController = new ResetPasswordController()
 
 passwordRouter.post("/password/forgot", celebrate({
 	[Segments.BODY]: {
@@ -13,6 +15,14 @@ passwordRouter.post("/password/forgot", celebrate({
 	}
 }), forgotPasswordController.create)
 
+passwordRouter.post("/password/reset", celebrate({
+	[Segments.BODY]: {
+		token: Joi.string().uuid().required(),
+		password: Joi.string().required(),
+		password_confirmation: Joi.string().required().valid(Joi.ref('password'))
+	}
+}), resetPasswordController.create)
 
 
-export default passwordRouter 
+
+export default passwordRouter
