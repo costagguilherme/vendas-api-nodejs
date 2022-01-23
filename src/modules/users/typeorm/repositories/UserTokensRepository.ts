@@ -5,7 +5,7 @@ import { UserToken } from '../entities/UserToken';
 class UserTokensRepository extends Repository<UserToken> {
 
 	async findByToken (token: string) {
-		const userToken = this.findOne({where: {token: token}})
+		const userToken = await this.findOne({where: {token: token}})
 		return userToken
 	}
 

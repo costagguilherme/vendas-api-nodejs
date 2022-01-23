@@ -22,7 +22,7 @@ function isAuthenticated (req: Request, res: Response, next: NextFunction) {
 		next()
 
 	} catch (error) {
-		if (!auth) return res.status(401).send('Invalid token')
+		return res.status(401).send('Invalid token')
 	}
 
 }
