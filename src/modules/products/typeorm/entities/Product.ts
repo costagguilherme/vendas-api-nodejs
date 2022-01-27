@@ -1,4 +1,5 @@
-import {Column, CreateDateColumn, Entity, PrimaryColumn, UpdateDateColumn} from "typeorm"
+import {Column, CreateDateColumn, Entity, OneToMany, PrimaryColumn, UpdateDateColumn} from "typeorm"
+import {OrdersProducts} from '../../../orders/typeorm/entities/OrdersProducts'
 
 
 @Entity('products') // tabela de refência
@@ -12,6 +13,9 @@ class Product {
 
 	@Column('decimal')
 	price: number
+
+	@OneToMany(() => OrdersProducts, order_products => order_products.product)
+	order_products: OrdersProducts[]
 
 	@Column('int')
 	quantity: number

@@ -7,6 +7,7 @@ import sessionsRouter from './users/session'
 import passwordRouter from './users/password'
 import profileRouter from './users/profile'
 import customerRouter from './customers/customer'
+import ordersRouter from './orders/orders'
 
 
 
@@ -20,6 +21,7 @@ router.use(sessionsRouter)
 router.use(passwordRouter)
 router.use(profileRouter)
 router.use(customerRouter)
+router.use(ordersRouter)
 
 
 
