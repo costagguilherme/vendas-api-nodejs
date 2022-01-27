@@ -24,7 +24,6 @@ class OrdersController {
 			const order = await createOrder.execute({customer_id, products})
 			return res.status(200).json(order)
 
-			return res.status(200).json(products)
 		} catch (error) {
 			return res.status(400).json({message: "An error occurred while creating order"})
 		}
