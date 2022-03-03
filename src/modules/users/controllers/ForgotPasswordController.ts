@@ -12,7 +12,7 @@ class ForgotPasswordController {
 		} catch (error) {
 			return res.status(400).send('An error ocurred while changing password')
 		}
-		
+
 	}
 
 }
